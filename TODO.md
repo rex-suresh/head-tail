@@ -1,7 +1,4 @@
 ### TODO : 
-- [ ] Provide number of lines as arg
-  - [ ] Return number of lines given
-     (given lines it has to return given number of lines)
 - [ ] basic head with default lineCount
 - [ ] head to return lines of line count
 - [ ] Head with options
@@ -15,6 +12,9 @@
 
 ### DONE :
 
+- [x] Return number of lines given
+    (given lines it has to return given number of lines)
+- [x] Provide number of lines as arg
 - [x] Create a fn which will return lines of given count ( first n lines)
 - [x] create a fn to join lines
 - [x] Implement separateLine to take content and return lines
