@@ -1,4 +1,5 @@
 ### TODO : 
+- [ ] Implement head for bytes (-c)
 - [ ] basic head with default lineCount
 - [ ] head to return lines of line count
 - [ ] Head with options
@@ -6,12 +7,14 @@
 - [ ] Make head to work through command line
 
 ### IDEAS / MAYBE :
+- [ ] extract '\n' to const
 - [ ] Take options as object and then pass to head
 - [ ] change the name of head.js in src
 - [ ] extract data manipulation functions to different file
 
 ### DONE :
 
+- [x] change contract of head to accept separator
 - [x] Return number of lines given
     (given lines it has to return given number of lines)
 - [x] Provide number of lines as arg
