@@ -1,14 +1,21 @@
 ### TODO : 
-- [ ] create a fn which will return lines of given count ( first n lines)
-- [ ] provide number of lines as arg
-  - [ ] return number of lines given
+- [ ] Provide number of lines as arg
+  - [ ] Return number of lines given
      (given lines it has to return given number of lines)
+- [ ] basic head with default lineCount
+- [ ] head to return lines of line count
+- [ ] Head with options
+- [ ] Make head to return 10 lines by default
+- [ ] Make head to work through command line
 
-### IDEAS :
+### IDEAS / MAYBE :
 - [ ] Take options as object and then pass to head
+- [ ] change the name of head.js in src
+- [ ] extract data manipulation functions to different file
 
 ### DONE :
 
+- [x] Create a fn which will return lines of given count ( first n lines)
 - [x] create a fn to join lines
 - [x] Implement separateLine to take content and return lines
 - [x] convert string data to workable data structure
