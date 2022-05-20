@@ -3,11 +3,11 @@ const { head } = require('../src/head.js');
 
 describe( 'head', () => {
   it( 'should return single line', () => {
-    assert.strict.deepEqual(head('hello'), 'hello');
-    assert.strict.deepEqual(head('tata'), 'tata');
+    assert.equal(head('hello'), 'hello');
+    assert.equal(head('tata'), 'tata');
   });
 
   it( 'should return two lines', () => {
-    assert.strict.deepEqual(head('hello\ntata'), 'hello\ntata');
+    assert.equal(head('hello\ntata'), 'hello\ntata');
   });
 });

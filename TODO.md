@@ -1,6 +1,8 @@
 ### TODO : 
+- [ ] create a fn to join lines
+- [ ] create a fn which will return lines of given count ( first n lines)
 - [ ] provide number of lines as arg
-  - [ ] return number of lines given (-n)
+  - [ ] return number of lines given
      (given lines it has to return given number of lines)
 
 ### IDEAS :
