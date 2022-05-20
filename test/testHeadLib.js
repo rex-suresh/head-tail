@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head, firstNLines } = require('../src/headLib.js');
+const { head, firstNItems } = require('../src/headLib.js');
 
 describe( 'head', () => {
   it( 'should return single line', () => {
@@ -21,15 +21,29 @@ describe( 'head', () => {
     assert.equal(head('hello\ntata\nbye', 4, '\n'), 'hello\ntata\nbye');
     assert.equal(head('hello\ntata\nbye\nhi', 4, '\n'), 'hello\ntata\nbye\nhi');
   });
-});
 
-describe( 'first-N-Lines', () => {
-  it('should return 1 line from lines', () => {
-    assert.strict.deepEqual(firstNLines([], 1), []);
-    assert.strict.deepEqual(firstNLines(['a', 'b', 'c'], 1), ['a']);
+  it( 'should return 1 byte from lines given', () => {
+    assert.equal(head('', 1, ''), '');
+    assert.equal(head('\n', 1, ''), '\n');
+    assert.equal(head('hello', 1, ''), 'h');
+    assert.equal(head('tata', 1, ''), 't');
   });
 
-  it('should return 2 lines from given lines', () => {
-    assert.strict.deepEqual(firstNLines(['a', 'b', 'c'], 2), ['a', 'b']);
+  it( 'should return 2 byte from lines given', () => {
+    assert.equal(head(' ', 2, ''), ' ');
+    assert.equal(head('\n ', 2, ''), '\n ');
+    assert.equal(head('hello', 2, ''), 'he');
+    assert.equal(head('tata', 2, ''), 'ta');
+  });
+});
+
+describe( 'first-N-Components', () => {
+  it('should return 1 components from items', () => {
+    assert.strict.deepEqual(firstNItems([], 1), []);
+    assert.strict.deepEqual(firstNItems(['a', 'b', 'c'], 1), ['a']);
+  });
+
+  it('should return 2 components from given items', () => {
+    assert.strict.deepEqual(firstNItems(['a', 'b', 'c'], 2), ['a', 'b']);
   });
 });

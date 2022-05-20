@@ -1,5 +1,4 @@
 ### TODO : 
-- [ ] Implement head for bytes (-c)
 - [ ] basic head with default lineCount
 - [ ] head to return lines of line count
 - [ ] Head with options
@@ -14,6 +13,7 @@
 
 ### DONE :
 
+- [x] Implement head for bytes (-c)
 - [x] change contract of head to accept separator
 - [x] Return number of lines given
     (given lines it has to return given number of lines)
