@@ -11,12 +11,13 @@
     prints the lines of count passed as arg
     acceptable counts +ve
 
+  `node head` - should give usage
   // cannot combine byte and line count //
 ```
 
 ```
 This filter displays the first count lines or 
-bytes of each of the specified files, 
+bytes of each of the specified files
 ```
 
 ~~or of the standard input if no files are specified~~
