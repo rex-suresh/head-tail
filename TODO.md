@@ -10,6 +10,10 @@
 
 ### DONE :
 
+- [x] Make parse options 
+  - [x] test parseArgs
+  - [x] test parseOptions
+  - [x] test isOption
 - [x] head to pass lineCount, separator
 - [x] head to return lines of line count(-n)
   - [x] basic head with default lineCount
