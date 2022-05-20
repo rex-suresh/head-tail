@@ -1,7 +1,8 @@
 const seperateLines = (content) => content.split('\n');
+const joinLines = (lines) => lines.join('\n');
 
 const head = function (content) {
   const lines = seperateLines(content);
-  return lines.join('\n');
+  return joinLines(lines);
 };  
 exports.head = head;

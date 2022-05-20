@@ -1,5 +1,4 @@
 ### TODO : 
-- [ ] create a fn to join lines
 - [ ] create a fn which will return lines of given count ( first n lines)
 - [ ] provide number of lines as arg
   - [ ] return number of lines given
@@ -10,6 +9,7 @@
 
 ### DONE :
 
+- [x] create a fn to join lines
 - [x] Implement separateLine to take content and return lines
 - [x] convert string data to workable data structure
 - [x] create a simple head and start with data
