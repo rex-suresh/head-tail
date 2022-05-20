@@ -8,6 +8,8 @@
 
 ### DONE :
 
+- [x] Implement separateLine to take content and return lines
+- [x] convert string data to workable data structure
 - [x] create a simple head and start with data
   - [x] get head to work for given lines of data
 - [x] extract fn into src dir

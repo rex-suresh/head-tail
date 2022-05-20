@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head } = require('../src/head');
+const { head } = require('../src/head.js');
 
 describe( 'head', () => {
   it( 'should return single line', () => {
