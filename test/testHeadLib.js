@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head, firstNItems } = require('../src/headLib.js');
+const { head } = require('../src/headLib.js');
 
 describe( 'head', () => {
   it( 'should return single line', () => {
@@ -37,16 +37,5 @@ describe( 'head', () => {
     assert.equal(head('\n ', {itemCount: 2, separator: ''}), '\n ');
     assert.equal(head( 'hello', { itemCount: 2, separator: ''}), 'he');
     assert.equal(head('tata', {itemCount: 2, separator: ''}), 'ta');
-  });
-});
-
-describe( 'first-N-Components', () => {
-  it('should return 1 components from items', () => {
-    assert.strict.deepEqual(firstNItems([], 1), []);
-    assert.strict.deepEqual(firstNItems(['a', 'b', 'c'], 1), ['a']);
-  });
-
-  it('should return 2 components from given items', () => {
-    assert.strict.deepEqual(firstNItems(['a', 'b', 'c'], 2), ['a', 'b']);
   });
 });

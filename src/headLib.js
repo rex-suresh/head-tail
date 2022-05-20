@@ -1,7 +1,5 @@
-const separateComponents = (content, separator) => content.split(separator);
-const joinComponents = (lines, separator) => lines.join(separator);
-
-const firstNItems = (lines, itemCount) => lines.slice(0, itemCount);
+const { separateComponents, joinComponents, firstNItems } =
+  require('./stringManipulate.js');
 
 const head = function (content, {itemCount, separator}) {
   const lines = separateComponents(content, separator);
@@ -9,4 +7,3 @@ const head = function (content, {itemCount, separator}) {
 };
 
 exports.head = head;
-exports.firstNItems = firstNItems;

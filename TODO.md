@@ -10,9 +10,11 @@
 
 ### DONE :
 
+- [x] head to pass lineCount, separator
+- [x] head to return lines of line count(-n)
+  - [x] basic head with default lineCount
 - [x] separate string manipulate fns
   - [x] test string manipulate
-
 - [x] change contract of head fn to receive object 
 - [x] Implement head for bytes (-c)
 - [x] change contract of head to accept separator
