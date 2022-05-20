@@ -1,9 +1,13 @@
 ### TODO : 
+- [ ] Make parse options 
+- [ ] Make head to work through command line
+- [ ] head with file
+- [ ] head to pass lineCount, separator
+- [ ] parse options
 - [ ] basic head with default lineCount
 - [ ] head to return lines of line count
 - [ ] Head with options
 - [ ] Make head to return 10 lines by default
-- [ ] Make head to work through command line
 
 ### IDEAS / MAYBE :
 - [ ] extract '\n' to const
@@ -13,6 +17,7 @@
 
 ### DONE :
 
+- [x] change contract of head fn to receive object 
 - [x] Implement head for bytes (-c)
 - [x] change contract of head to accept separator
 - [x] Return number of lines given
