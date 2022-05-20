@@ -1,13 +1,6 @@
 ### TODO : 
-- [ ] Make parse options 
-- [ ] Make head to work through command line
-- [ ] head with file
-- [ ] head to pass lineCount, separator
-- [ ] parse options
-- [ ] basic head with default lineCount
-- [ ] head to return lines of line count
-- [ ] Head with options
-- [ ] Make head to return 10 lines by default
+- [ ] throw error when -c and -n are used
+- [ ] log usage when args not provided
 
 ### IDEAS / MAYBE :
 - [ ] extract '\n' to const
@@ -16,6 +9,9 @@
 - [ ] extract data manipulation functions to different file
 
 ### DONE :
+
+- [x] separate string manipulate fns
+  - [x] test string manipulate
 
 - [x] change contract of head fn to receive object 
 - [x] Implement head for bytes (-c)
