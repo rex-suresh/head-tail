@@ -10,6 +10,8 @@
   -n lines 
     prints the lines of count passed as arg
     acceptable counts +ve
+
+  // cannot combine byte and line count //
 ```
 
 ```
