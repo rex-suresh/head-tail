@@ -1,15 +1,15 @@
 ### TODO : 
 - [ ] use match instead of regex test
-- [ ] errors to be handled    
-    - [ ] when file doesn't exits ,`No such file or directory`
-    - [ ] when files exist and doesn't (mix),`No such file or directory + 'OUTPUT'`
-    - [ ] when unknown option provided,`usage: head [-n lines | -c bytes] [file ...]`
 
 ### IDEAS / MAYBE :
 - [ ] change approach of passing separator.
 
 ### DONE :
 
+- [x] errors to be handled
+    - [x] when file doesn't exits ,`No such file or directory`
+    - [x] when files exist and doesn't (mix),`No such file or directory + 'OUTPUT'`
+    - [x] when unknown option provided,`usage: head [-n lines | -c bytes] [file ...]`
 - [x] accept arguments without space
 - [x] console.error error messages
 - [x] change approach of validation inside parsing

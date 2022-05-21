@@ -7,7 +7,11 @@ const formatOutput = function (headOutput, fileNames) {
   const formattedOutPut = [];
   const format = headOutput.length > 1 ? pushBoth : pushOutput;
   for (let index = 0; index < headOutput.length; index++) {
-    format(formattedOutPut, headOutput[index], fileNames[index]);
+    if (Array.isArray(headOutput[index])) {
+      formattedOutPut.push(headOutput[index][0]);
+    } else {
+      format(formattedOutPut, headOutput[index], fileNames[index]);
+    }
   }
 
   return formattedOutPut;

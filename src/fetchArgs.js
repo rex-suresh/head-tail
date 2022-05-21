@@ -7,7 +7,7 @@ const separateArgs = (args) => {
   while (optionPattern.test(userArgs[0])) {
     const option = userArgs.shift();
     const key = option.match(/^-[A-z]/);
-    let value = option.match(/[0-9]{1,}/);
+    let value = option.match(/-[0-9]{1,}/);
     
     if (!isFinite(value) || value === null) {
       value = userArgs.shift();

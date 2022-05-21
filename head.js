@@ -4,16 +4,16 @@ const { headMain } = require('./src/headMain.js');
 const { parseArgs } = require('./src/parseArgs.js');
 const { formatOutput } = require('./src/formatHeadOutput.js');
 const { joinComponents } = require('./src/stringManipulate.js');
-const { exit } = require('process');
 
 const main = function (readFile, args) {
   let parsedArgs;
+  
   try {
     parsedArgs = parseArgs(args);
   } catch (error) {
-    console.error(error.message);
-    exit(2);
+    return error.message;
   }
+
   const head = headMain.bind(null, readFile, parsedArgs.option);
   const headOutput = [];
   
@@ -21,7 +21,8 @@ const main = function (readFile, args) {
     try {
       headOutput.push(head(parsedArgs.files[index]));
     } catch (error) {
-      headOutput.push(error.message);
+      headOutput.push([`${parsedArgs.files[index]}: No such file or directory`]
+      );
     }
   }
   return joinComponents(formatOutput(headOutput, parsedArgs.files), '\n\n');
