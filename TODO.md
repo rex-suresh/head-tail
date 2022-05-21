@@ -1,15 +1,17 @@
 ### TODO : 
 - [ ] throw error when -c and -n are used
-- [ ] log usage when args not provided
+- [ ] log `usage` when args not provided
 
 ### IDEAS / MAYBE :
-- [ ] extract '\n' to const
-- [ ] Take options as object and then pass to head
-- [ ] change the name of head.js in src
-- [ ] extract data manipulation functions to different file
 
 ### DONE :
 
+- [x] Head with options
+- [x] Make head to return 10 lines by default
+- [x] extract data manipulation functions to different file
+- [x] change the name of head.js in src
+- [x] Take options as object and then pass to head
+- [x] ~~extract '\n' to const~~
 - [x] Make parse options 
   - [x] test parseArgs
   - [x] test parseOptions
