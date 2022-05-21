@@ -30,7 +30,7 @@ describe( 'joinComponents', () => {
   });
 });
 
-describe( 'firstNItems', () => {
+describe('firstNItems', () => {
   it( 'should return first 1 element as array', () => {
     assert.deepEqual(firstNItems([''], 1), ['']);
     assert.deepEqual(firstNItems(['1'], 1), ['1']);

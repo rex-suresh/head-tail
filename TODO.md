@@ -1,4 +1,5 @@
 ### TODO : 
+- [ ] print File names when multiple files are given
 - [ ] throw error when -c and -n are used
 - [ ] log `usage` when args not provided
 
@@ -6,6 +7,9 @@
 
 ### DONE :
 
+- [x] chain head with files parser and files
+- [x] head with file
+  - [x] test headMain
 - [x] Head with options
 - [x] Make head to return 10 lines by default
 - [x] extract data manipulation functions to different file
