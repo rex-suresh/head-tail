@@ -1,12 +1,17 @@
 ### TODO : 
-- [ ] print File names when multiple files are given
 - [ ] throw error when -c and -n are used
 - [ ] log `usage` when args not provided
 
 ### IDEAS / MAYBE :
+- [ ] add combination key throw (-c and -n)
+- [ ] add illegal count throw from parser
 
 ### DONE :
 
+- [x] print File names when multiple files are given
+  - [x] write a format output fn
+  - [x] test format name
+  - [x] test format output
 - [x] chain head with files parser and files
 - [x] head with file
   - [x] test headMain
