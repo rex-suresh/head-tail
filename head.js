@@ -5,6 +5,10 @@ const { formatOutput } = require('./src/formatHeadOutput.js');
 const { joinComponents } = require('./src/stringManipulate.js');
 
 const main = function (readFile, args) {
+  if (args.length < 1) {
+    return 'usage: head [-n lines | -c bytes] [file ...]';
+  }
+  
   const parsedArgs = parseArgs(args);
   const head = headMain.bind(null, readFile, parsedArgs.option);
   const headOutput = parsedArgs.files.map(head);

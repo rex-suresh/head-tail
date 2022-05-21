@@ -1,13 +1,16 @@
 ### TODO : 
-- [ ] throw error when -c and -n are used
-- [ ] log `usage` when args not provided
+- [ ] use match instead of regex test
+- [ ] change approach of validation inside parsing
 
 ### IDEAS / MAYBE :
 - [ ] add combination key throw (-c and -n)
 - [ ] add illegal count throw from parser
+- [ ] change approach of passing separator.
 
 ### DONE :
 
+- [x] log `usage` when args not provided
+- [x] throw error when -c and -n are used
 - [x] print File names when multiple files are given
   - [x] write a format output fn
   - [x] test format name
