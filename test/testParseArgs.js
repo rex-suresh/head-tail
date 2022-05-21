@@ -31,14 +31,6 @@ describe( 'parseOption', () => {
     assert.strict.deepEqual(parseOption('-c', 10),
       { separator: '', itemCount: 10 });
   });
-
-  it( 'should throw an error when unknown key is used ', () => {
-    assert.throws(parseOption.bind(null, '-x', 10),
-      {
-        message: 'invalid option: -x',
-        name: 'Parsing Error'
-      });
-  });
 });
 
 describe( 'parseArgs', () => {
@@ -56,7 +48,7 @@ describe( 'parseArgs', () => {
       { option: { separator: '\n', itemCount: 10 }, files: ['a', 'c'] });
   });
 
-  it('should return a object with option and multiple files list', () => {
+  it('should return a object with option and fileList', () => {
     assert.strict.deepEqual( parseArgs(['-c', '10', '-c', '20', 'a']),
       { option: { separator: '', itemCount: 20 }, files: ['a'] });
     assert.strict.deepEqual( parseArgs(['-n', '10', '-n', '5', 'c']),
@@ -67,16 +59,26 @@ describe( 'parseArgs', () => {
     assert.throws(parseArgs.bind(null,
       ['-c', '10', '-n', '20', 'a']),
     {
-      name: 'Parsing Error',
-      message: 'cannot combine line and byte counts'
+      message: 'can\'t combine line and byte counts'
     }
     );
     assert.throws(parseArgs.bind(null,
       ['-n', '10', '-c', '5', 'c']),
     {
-      name: 'Parsing Error',
-      message: 'cannot combine line and byte counts'
+      message: 'can\'t combine line and byte counts'
     }
     );
+  });
+
+  it('should throw an error when option values are invalid', () => {
+    assert.throws(parseArgs.bind(null,
+      ['-n', '-10', 'a']), { message: 'illegal line count ---10' });
+    assert.throws(parseArgs.bind(null,
+      ['-c', '-10', 'a']), { message: 'illegal line count ---10' });
+  });
+
+  it('should throw an error when provided option is unknown', () => {
+    assert.throws(parseArgs.bind(null,
+      ['-x', '-10', 'a']), { message: 'illegal line count ---10' });
   });
 });
