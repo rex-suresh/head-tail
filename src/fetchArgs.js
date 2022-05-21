@@ -6,13 +6,12 @@ const separateArgs = (args) => {
   
   while (optionPattern.test(userArgs[0])) {
     const option = userArgs.shift();
-    const key = option.match(/^-[A-z]/);
-    let value = option.match(/-[0-9]{1,}/);
+    const key = option.match(/^-[A-z]/g)[0];
+    let value = option.match(/-[0-9]{1,}/g);
     
     if (!isFinite(value) || value === null) {
       value = userArgs.shift();
     }
-    // options.push(userArgs.splice(0, 2));
     options.push([key, value]);
   }
   return {options, files: userArgs};
@@ -21,8 +20,7 @@ const separateArgs = (args) => {
 const illegalOptionThrow = (option) => {
   throw {
     message:
-      'illegal option -- ' + option
-      + '\nusage: head [-n lines | -c bytes] [file ...]'
+      `illegal option --${option}`
   };
 };
 
@@ -46,12 +44,12 @@ const fetchOptions = function (options) {
   while (options.length > 0) {
     selectedOption = options[options.length - 1];
     const firstOption = options.shift();
-    
     if (selectedOption[0] !== firstOption[0]) {
-      if (!/^-[cn]/.test(selectedOption[0])) {
-        illegalOptionThrow();
+      const isMatch = /^-[cn]/.test(selectedOption[0]);
+      if (isMatch) {
+        combinedOptionThrow();
       }
-      combinedOptionThrow();
+      illegalOptionThrow(selectedOption);
     }
   }
 

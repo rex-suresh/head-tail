@@ -77,8 +77,5 @@ describe( 'parseArgs', () => {
       ['-c', '-10', 'a']), { message: 'illegal line count ---10' });
   });
 
-  it('should throw an error when provided option is unknown', () => {
-    assert.throws(parseArgs.bind(null,
-      ['-x', '-10', 'a']), { message: 'illegal line count ---10' });
-  });
+  
 });
