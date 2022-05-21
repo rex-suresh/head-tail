@@ -1,10 +1,19 @@
+/* eslint-disable max-statements */
 const separateArgs = (args) => {
   const userArgs = args.splice(0);
   const optionPattern = /^-/;
   const options = [];
   
   while (optionPattern.test(userArgs[0])) {
-    options.push(userArgs.splice(0, 2));
+    const option = userArgs.shift();
+    const key = option.match(/^-[A-z]/);
+    let value = option.match(/[0-9]{1,}/);
+    
+    if (!isFinite(value) || value === null) {
+      value = userArgs.shift();
+    }
+    // options.push(userArgs.splice(0, 2));
+    options.push([key, value]);
   }
   return {options, files: userArgs};
 };

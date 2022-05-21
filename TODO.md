@@ -10,6 +10,7 @@
 
 ### DONE :
 
+- [x] accept arguments without space
 - [x] console.error error messages
 - [x] change approach of validation inside parsing
 - [x] use splice to fetch options passed as args
