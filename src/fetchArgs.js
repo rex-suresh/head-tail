@@ -21,6 +21,10 @@ const illegalCountThrow = (option) => {
   throw { message: 'illegal line count --' + option[1] };
 };
 
+const usageThrow = () => {
+  throw { message: 'usage: head [-n lines | -c bytes] [file ...]' };
+};
+
 const combinedOptionThrow = () => {
   throw {
     message: 'can\'t combine line and byte counts'
@@ -49,6 +53,9 @@ const fetchInputs = function (args) {
   const { options, files } = separateArgs(args);
   const option = fetchOptions(options);
   const optionValid = ([key, value]) => value > 0 && isFinite(value);
+  if (files.length < 1) {
+    usageThrow();
+  }
   if (!optionValid(option)) {
     illegalCountThrow(option);
   }

@@ -1,20 +1,20 @@
 ### TODO : 
 - [ ] use match instead of regex test
-- [ ] change approach of validation inside parsing
-- [ ] errors to be handled
-    
+- [ ] errors to be handled    
     - [ ] when file doesn't exits ,`No such file or directory`
     - [ ] when files exist and doesn't (mix),`No such file or directory + 'OUTPUT'`
     - [ ] when unknown option provided,`usage: head [-n lines | -c bytes] [file ...]`
 
 ### IDEAS / MAYBE :
-- [ ] use splice to fetch options passed as args
-- [ ] add combination key throw (-c and -n)
-- [ ] add illegal count throw from parser
 - [ ] change approach of passing separator.
 
 ### DONE :
 
+- [x] console.error error messages
+- [x] change approach of validation inside parsing
+- [x] use splice to fetch options passed as args
+- [x] add combination key throw (-c and -n)
+- [x] add illegal count throw from parser
 - [x] when count < 1 ,`illegal line count -- XX`
     - [x] when option provided is unknown,
       `illegal option -- x`; `usage: head [-n lines | -c bytes] [file ...]`
