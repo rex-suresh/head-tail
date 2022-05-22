@@ -1,0 +1,52 @@
+inputs => args
+        separate args
+               V
+    handle args at cases : '-c8', '-c' '8', '-8'
+               V
+      validate the inputs
+               V
+      select a final option
+               V
+maintain a rich structure => 
+    { option: '-c', filterOn: 'bytes', limit: '8' }
+               V
+------------------------------------------------
+    capture file contents
+               V
+pass file contents to head    <+== along with option
+               V
+break content based on filter specified
+               V
+          return data
+-------------------------------------------------
+error throws: 
+-------------
+    (input validation level)
+invalid value
+invalid option
+combination usage
+
+    (process level)
+usage
+
+    (fs level)
+no file/dir
+permission denied
+----------------------------------------------------
+
+take a arg check for structure (start with -)
+(
+create a option object
+        -- break at validation level
+        -- maintain memory of options used
+) loop until options are done
+
+start head with files and extracted option 
+
+format the output
+        - for multiple files `==> abc <==` header
+        - single file no header
+----------------------------------------------------
+notes : 
+    errors to be thrown via error stream
+    error changes the exit status of process (1)

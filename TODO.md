@@ -1,11 +1,12 @@
 ### TODO : 
-- [ ] use match instead of regex test
+- [ ] change approach based on process written.
 
 ### IDEAS / MAYBE :
-- [ ] change approach of passing separator.
 
 ### DONE :
 
+- [ ] ~~use match instead of regex test~~
+- [ ] ~~change approach of passing separator.~~
 - [x] errors to be handled
     - [x] when file doesn't exits ,`No such file or directory`
     - [x] when files exist and doesn't (mix),`No such file or directory + 'OUTPUT'`
