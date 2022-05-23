@@ -2,7 +2,7 @@ const assert = require('assert');
 const { checkArgs } = require(
   '../src/validate.js');
 
-describe.only( 'checkArgs', () => {
+describe( 'checkArgs', () => {
   it( 'should not throw an error when args are as expected', () => {
     assert.doesNotThrow(() => checkArgs({
       options:
