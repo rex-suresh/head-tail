@@ -5,8 +5,8 @@
 **NOTE**
   - [ ] **follow the todo**
   - [ ] break complex code
-  - [ ] errors to be thrown via error stream
-  - [ ] error changes the exit status of process (1)
+  - [x] errors to be thrown via error stream
+  - [x] error changes the exit status of process (1)
 
 ### IDEAS / MAYBE :
 

@@ -1,31 +1,33 @@
-/* eslint-disable max-statements */
+/* eslint-disable no-process-exit */
+
 const fs = require('fs');
-const { headMain } = require('./src/headMain.js');
-const { parseArgs } = require('./src/parseArgs.js');
-const { formatOutput } = require('./src/formatHeadOutput.js');
-const { joinComponents } = require('./src/stringManipulate.js');
+const { head } = require('./src/headLib.js');
+const { checkArgs } = require('./src/validate.js');
+const { formatOutput, formatErrorMessage } = require('./src/formatOutput.js');
+const { separateArgs, parseOption } = require('./src/fetch.js');
 
 const main = function (readFile, args) {
-  let parsedArgs;
-  
+  const parsedArgs = separateArgs(args);
   try {
-    parsedArgs = parseArgs(args);
+    checkArgs(parsedArgs);
   } catch (error) {
-    return error.message;
+    console.error(error.message);
+    process.exit(1);
   }
-
-  const head = headMain.bind(null, readFile, parsedArgs.option);
-  const headOutput = [];
   
-  for (let index = 0; index < parsedArgs.files.length; index++) {
+  const { options, files } = parsedArgs;
+  const finalOption = parseOption(options[ options.length - 1]);
+  
+  files.forEach((file, index) => {
     try {
-      headOutput.push(head(parsedArgs.files[index]));
+      const headOutput = head(readFile(file, 'utf8'), finalOption);
+      console.log(formatOutput(headOutput, file, files.length, index));
     } catch (error) {
-      headOutput.push([`${parsedArgs.files[index]}: No such file or directory`]
-      );
+      const message = formatErrorMessage(error.message, file);
+      console.error(message);
+      process.exitCode = 1;
     }
-  }
-  return joinComponents(formatOutput(headOutput, parsedArgs.files), '\n\n');
+  });
 };
 
-console.log(main(fs.readFileSync, process.argv.slice(2)));
+main(fs.readFileSync, process.argv.slice(2));
