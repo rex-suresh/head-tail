@@ -7,7 +7,6 @@
 - [ ] implement main to be injected with dependencies
 - [ ] implement head to work on file content and options provided
 - [ ] implement main to work through command line
-- [ ] implement options to head (-n, -c)
 - [ ] change approach based on process written.
 
 **NOTE**
@@ -20,6 +19,8 @@
 
 ### DONE :
 
+- [x] implement options to head (-n, -c)
+ - [x] change approach to head content
 - [x] implement header for head output
 - [x] write the separate args function
 - [x] write a parser function to handle options

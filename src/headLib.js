@@ -1,9 +1,21 @@
-const { separateComponents, joinComponents, firstNItems } =
-  require('./stringManipulate.js');
-
-const head = function (content, {itemCount, separator}) {
-  const lines = separateComponents(content, separator);
-  return joinComponents(firstNItems(lines, itemCount), separator);
+const separateParts = (content, separator) => content.split(separator);
+const joinParts = (parts, separator) => parts.join(separator);
+const firstNParts = (content, limit, separator) => {
+  const parts = separateParts(content, separator);
+  return joinParts(parts.slice(0, limit), separator);
 };
+const firstNLines = (content, limit) => firstNParts(content, limit, '\n');
+const firstNBytes = (content, limit) => firstNParts(content, limit, '');
 
-exports.head = head;
+const headMain = function (fileContent, { filterOn, limit }) {
+  const fetchFns = {
+    'lines': firstNLines,
+    'bytes': firstNBytes
+  };
+
+  const firstNItems = fetchFns[filterOn];
+  return firstNItems(fileContent, limit);
+};
+exports.head = headMain;
+exports.separateParts = separateParts;
+exports.firstNParts = firstNParts;

@@ -1,41 +1,53 @@
 const assert = require('assert');
-const { head } = require('../src/headLib.js');
+const { head, separateParts, firstNParts } = require('../src/headLib.js');
 
-describe( 'head', () => {
+describe.only( 'head', () => {
   it( 'should return single line', () => {
-    assert.equal(head('hello', 1, '\n'), 'hello');
-    assert.equal(head('tata', {itemCount: 1, separator: '\n'}), 'tata');
+    assert.equal(head('hello', { limit: 1, option: '-n', filterOn: 'lines' }),
+      'hello');
+    assert.equal(head('tata', { limit: 1, option: '-n', filterOn: 'lines' }),
+      'tata');
   });
 
   it( 'should return two lines', () => {
-    assert.equal(head('hello\ntata', {itemCount: 2, separator: '\n'}),
-      'hello\ntata');
-  });
-
-  it( 'should return 1 line from lines given', () => {
-    assert.equal(head('', {itemCount: 1, separator: '\n'}), '');
-    assert.equal(head('hello\ntata', {itemCount: 1, separator: '\n'}), 'hello');
-  });
-
-  it( 'should return 4 lines from lines given', () => {
-    assert.equal(head('', {itemCount: 4, separator: '\n'}), '');
     assert.equal(head('hello\ntata\nbye',
-      { itemCount: 4, separator: '\n' }), 'hello\ntata\nbye');
-    assert.equal(head('hello\ntata\nbye\nhi',
-      { itemCount: 4, separator: '\n' }), 'hello\ntata\nbye\nhi');
+      { limit: 2, option: '-n', filterOn: 'lines' }),
+    'hello\ntata');
   });
 
   it( 'should return 1 byte from lines given', () => {
-    assert.equal(head('', {itemCount: 1, separator: ''}), '');
-    assert.equal(head('\n', {itemCount: 1, separator: ''}), '\n');
-    assert.equal(head('hello', {itemCount: 1, separator: ''}), 'h');
-    assert.equal(head('tata', {itemCount: 1, separator: ''}), 't');
+    assert.equal(head('', {limit: 1, option: '-c', filterOn: 'bytes'}),
+      '');
+    assert.equal(head('\n', {limit: 1, option: '-c', filterOn: 'bytes'}),
+      '\n');
+    assert.equal(head('hello', {limit: 1, option: '-c', filterOn: 'bytes'}),
+      'h');
+    assert.equal(head('tata', {limit: 1, option: '-c', filterOn: 'bytes'}),
+      't');
   });
 
   it( 'should return 2 byte from lines given', () => {
-    assert.equal(head( ' ', {itemCount: 2, separator: ''}), ' ');
-    assert.equal(head('\n ', {itemCount: 2, separator: ''}), '\n ');
-    assert.equal(head( 'hello', { itemCount: 2, separator: ''}), 'he');
-    assert.equal(head('tata', {itemCount: 2, separator: ''}), 'ta');
+    assert.equal(head( ' ', {limit: 2, option: '-c', filterOn: 'bytes'}),
+      ' ');
+    assert.equal(head('\n ', {limit: 2, option: '-c', filterOn: 'bytes'}),
+      '\n ');
+    assert.equal(head( 'hello', { limit: 2, option: '-c', filterOn: 'bytes'}),
+      'he');
+    assert.equal(head('tata', {limit: 2, option: '-c', filterOn: 'bytes'}),
+      'ta');
+  });
+});
+
+describe.only( 'separateParts', () => {
+  it( 'should separate string content based on separator provided', () => {
+    assert.strict.deepEqual(separateParts('a\nb\nc', '\n'), ['a', 'b', 'c']);
+    assert.strict.deepEqual(separateParts('abc', ''), ['a', 'b', 'c']);
+  });
+});
+
+describe.only( 'firstNParts', () => {
+  it( 'should separate string content based on separator provided', () => {
+    assert.strict.deepEqual(firstNParts('a\nb\nc', 1, '\n'), 'a');
+    assert.strict.deepEqual(firstNParts('abc', 2, ''), 'ab');
   });
 });
