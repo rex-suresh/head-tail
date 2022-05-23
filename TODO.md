@@ -1,8 +1,4 @@
 ### TODO : 
-- [ ] validate inputs function to validate all inputs
-  - [ ] throw error for invalid count
-  - [ ] throw error for invalid option
-  - [ ] throw error for option combination use
 - [ ] parse and validate options
 - [ ] implement main to be injected with dependencies
 - [ ] implement head to work on file content and options provided
@@ -19,6 +15,10 @@
 
 ### DONE :
 
+- [x] validate inputs function to validate all inputs
+  - [x] throw error for invalid count
+  - [x] throw error for invalid option
+  - [x] throw error for option combination use
 - [x] implement options to head (-n, -c)
  - [x] change approach to head content
 - [x] implement header for head output
