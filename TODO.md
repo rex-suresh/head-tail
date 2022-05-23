@@ -1,17 +1,43 @@
+# TAIL
 ### TODO : 
+- [ ] write Todo
+- [ ] take detailed note of tail contract
+- [ ] separate arguments as of head
+- [ ] validate the arguments
+- [ ] create a tailLib
+- [ ] catch errors and console error messages
+- [ ] 
 - [ ] implement main to be injected with dependencies
-- [ ] change approach based on process written.
 
 **NOTE**
   - [ ] **follow the todo**
   - [ ] break complex code
-  - [x] errors to be thrown via error stream
-  - [x] error changes the exit status of process (1)
+  - [ ] errors to be thrown via error stream
+  - [ ] error changes the exit status of process (1)
 
 ### IDEAS / MAYBE :
 
 ### DONE :
 
+
+---------------------
+# HEAD
+### TODO : 
+- [ ] extract data manipulation into a different file.
+- [ ] change approach based on process written.
+- [ ] Test main with mocking
+- [ ] make validation generic / extensible
+**NOTE**
+  - [ ] **follow the todo**
+  - [ ] break complex code
+  
+
+### IDEAS / MAYBE :
+
+### DONE :
+- [x] errors to be thrown via error stream
+  - [x] error changes the exit status of process (1)
+- [x] implement main to be injected with dependencies
 - [x] parse and validate options
 - [x] implement head to work on file content and options provided
 - [x] implement main to work through command line
