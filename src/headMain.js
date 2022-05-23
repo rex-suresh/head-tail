@@ -5,7 +5,16 @@ const { checkArgs } = require('./validate.js');
 const { formatOutput, formatErrorMessage } = require('./formatOutput.js');
 const { separateArgs, parseOption } = require('./fetch.js');
 
+const isHelp = (log, arg) => {
+  if (arg === '--help') {
+    log('usage: head [-n lines | -c bytes] [file ...]');
+    process.exit(1);
+  }
+};
+
 const main = function (log, showError, readFile, args) {
+  isHelp(log, args[0]);
+  
   const parsedArgs = separateArgs(args);
   try {
     checkArgs(parsedArgs);

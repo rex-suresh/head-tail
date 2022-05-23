@@ -8,6 +8,13 @@ const illegalOptionThrow = (option) => {
   };
 };
 
+const optionReqArgThrow = (key) => {
+  throw {
+    message: `option requires an argument -- ${key[1]
+    }\nusage: head [-n lines | -c bytes] [file ...]`
+  };
+};
+
 const illegalValueThrow = (optionName, value) => {
   throw { message: `illegal ${optionName} count -- ${value}` };
 };
@@ -27,6 +34,12 @@ const validateValue = function (arg) {
   }
 };
 
+const validateValueExist = function (arg) {
+  if (isNaN(arg.limit)) {
+    optionReqArgThrow(arg.option);
+  }
+};
+
 const validateOption = function () {
   const knownOptionsPattern = /^-[cn]?$/;
   const options = [];
@@ -43,7 +56,10 @@ const validateOption = function () {
 
 const validateOptions = function (options) {
   options.forEach(validateOption());
-  options.forEach(validateValue);
+  options.forEach((option) => {
+    validateValueExist(option);
+    validateValue(option);
+});
 };
 
 const validate = function (args) {
