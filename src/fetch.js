@@ -7,7 +7,7 @@ const separateArgs = function (allArgs) {
   const args = [...allArgs];
   const options = [];
   
-  while (args[0].startsWith('-')) {
+  while (args.length > 0 && args[0].startsWith('-')) {
     const arg = args.shift();
     const [option, value] = separateOptVal(arg);
     const limit = isFinite(value) ? value : + args.shift();

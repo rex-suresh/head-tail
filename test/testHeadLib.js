@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { head, separateParts, firstNParts } = require('../src/headLib.js');
 
-describe.only( 'head', () => {
+describe( 'head', () => {
   it( 'should return single line', () => {
     assert.equal(head('hello', { limit: 1, option: '-n', filterOn: 'lines' }),
       'hello');
@@ -38,14 +38,14 @@ describe.only( 'head', () => {
   });
 });
 
-describe.only( 'separateParts', () => {
+describe( 'separateParts', () => {
   it( 'should separate string content based on separator provided', () => {
     assert.strict.deepEqual(separateParts('a\nb\nc', '\n'), ['a', 'b', 'c']);
     assert.strict.deepEqual(separateParts('abc', ''), ['a', 'b', 'c']);
   });
 });
 
-describe.only( 'firstNParts', () => {
+describe( 'firstNParts', () => {
   it( 'should separate string content based on separator provided', () => {
     assert.strict.deepEqual(firstNParts('a\nb\nc', 1, '\n'), 'a');
     assert.strict.deepEqual(firstNParts('abc', 2, ''), 'ab');
