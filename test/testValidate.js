@@ -29,7 +29,8 @@ describe( 'checkArgs', () => {
       options:
         [{ limit: 2, option: '-x' }], files: ['apple']
     }), {
-      message: 'illegal option ---x'
+      message:
+        'illegal option -- x\nusage: head [-n lines | -c bytes] [file ...]'
     });
   });
 
@@ -38,7 +39,7 @@ describe( 'checkArgs', () => {
       options:
         [{ limit: -2, option: '-n' }], files: ['apple']
     }), {
-      message: 'illegal line count ---2'
+      message: 'illegal line count -- -2'
     });
   });
 });

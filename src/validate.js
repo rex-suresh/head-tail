@@ -2,11 +2,14 @@
 /* eslint-disable no-console */
 
 const illegalOptionThrow = (option) => {
-  throw { message: `illegal option --${option}` };
+  throw {
+    message: `illegal option -- ${option[1]
+    }\nusage: head [-n lines | -c bytes] [file ...]`
+  };
 };
 
 const illegalValueThrow = (optionName, value) => {
-  throw { message: `illegal ${optionName} count --${value}` };
+  throw { message: `illegal ${optionName} count -- ${value}` };
 };
 
 const usageThrow = () => {
@@ -39,8 +42,8 @@ const validateOption = function () {
 };
 
 const validateOptions = function (options) {
-  options.forEach(validateValue);
   options.forEach(validateOption());
+  options.forEach(validateValue);
 };
 
 const validate = function (args) {
