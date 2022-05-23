@@ -7,11 +7,12 @@ const formatErrorMessage = (message, fileName) => {
     newMessage.slice(0, newMessage.lastIndexOf(',')))}`;
 };
 
-const formatOutput = (headOutput, fileName, fileCount, currentCount) => {
+const formatOutput = (headOutput, fileName, fileCount, logCount) => {
   const formattedOutPut = formatName(fileName).concat('\n', headOutput);
   const output = fileCount > 1 ? formattedOutPut : headOutput;
-  const gap = currentCount > 0 ? '\n' : '';
+  const gap = logCount > 0 ? '\n' : '';
   return gap + output;
 };
+
 exports.formatErrorMessage = formatErrorMessage;
 exports.formatOutput = formatOutput;

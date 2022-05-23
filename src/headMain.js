@@ -25,11 +25,12 @@ const main = function (log, showError, readFile, args) {
   
   const { options, files } = parsedArgs;
   const finalOption = parseOption(options[ options.length - 1]);
-  
-  files.forEach((file, index) => {
+  let logCount = 0;
+  files.forEach((file) => {
     try {
       const headOutput = head(readFile(file, 'utf8'), finalOption);
-      log(formatOutput(headOutput, file, files.length, index));
+      log(formatOutput(headOutput, file, files.length, logCount));
+      logCount++;
     } catch (error) {
       const message = formatErrorMessage(error.message, file);
       showError(message);
