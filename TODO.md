@@ -24,8 +24,6 @@
 # HEAD
 ### TODO : 
 - [ ] extract data manipulation into a different file.
-- [ ] change approach based on process written.
-- [ ] Test main with mocking
 - [ ] make validation generic / extensible
 **NOTE**
   - [ ] **follow the todo**
@@ -35,6 +33,8 @@
 ### IDEAS / MAYBE :
 
 ### DONE :
+- [x] change approach based on process written.
+- [x] Test main with mocking
 - [x] errors to be thrown via error stream
   - [x] error changes the exit status of process (1)
 - [x] implement main to be injected with dependencies
