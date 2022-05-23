@@ -1,5 +1,25 @@
 ### TODO : 
+- [ ] write the separate args function
+- [ ] write a parser function to handle options
+  - [ ] options at case '-n8'
+  - [ ] options at case '-n', '8'
+  - [ ] options at case '-8'
+- [ ] validate inputs function to validate all inputs
+  - [ ] throw error for invalid count
+  - [ ] throw error for invalid option
+  - [ ] throw error for option combination use
+- [ ] parse and validate options
+- [ ] implement main to be injected with dependencies
+- [ ] implement head to work on file content and options provided
+- [ ] implement main to work through command line
+- [ ] implement options to head (-n, -c)
 - [ ] change approach based on process written.
+
+**NOTE**
+  - [ ] **follow the todo**
+  - [ ] break complex code
+  - [ ] errors to be thrown via error stream
+  - [ ] error changes the exit status of process (1)
 
 ### IDEAS / MAYBE :
 
