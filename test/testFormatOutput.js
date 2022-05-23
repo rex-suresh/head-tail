@@ -1,16 +1,13 @@
 const assert = require('assert');
-const { formatOutput } = require('../src/formatHeadOutput.js');
+const { formatOutput } = require('../src/formatOutput.js');
 
-describe( 'formatOutput', () => {
-  it( 'should return head output for 1 file', () => {
-    assert.deepEqual(formatOutput(['hello'], ['a']), ['hello']);
-    assert.deepEqual(formatOutput([''], ['a']), ['']);
+describe.only( 'formatOutput', () => {
+  it( 'should return output for 1 file', () => {
+    assert.deepEqual(formatOutput('hello', 'a.txt', 1), 'hello');
   });
 
-  it( 'should return formatted head output for 2 files', () => {
-    assert.deepEqual(formatOutput(['hello', 'bye'], ['a', 'b']),
-      ['==> a <==\nhello', '==> b <==\nbye']);
-    assert.deepEqual(formatOutput(['h', 'b'], ['a', 'b']),
-      ['==> a <==\nh', '==> b <==\nb']);
+  it( 'should return formatted output for 2 fileCount', () => {
+    assert.deepEqual(formatOutput('hello', 'a.txt', 2),
+      '==> a.txt <==\nhello');
   });
 });

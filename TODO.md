@@ -1,5 +1,4 @@
 ### TODO : 
-
 - [ ] validate inputs function to validate all inputs
   - [ ] throw error for invalid count
   - [ ] throw error for invalid option
@@ -20,6 +19,8 @@
 ### IDEAS / MAYBE :
 
 ### DONE :
+
+- [x] implement header for head output
 - [x] write the separate args function
 - [x] write a parser function to handle options
   - [x] options at case '-n8'
