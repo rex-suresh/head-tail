@@ -1,9 +1,5 @@
 ### TODO : 
-- [ ] write the separate args function
-- [ ] write a parser function to handle options
-  - [ ] options at case '-n8'
-  - [ ] options at case '-n', '8'
-  - [ ] options at case '-8'
+
 - [ ] validate inputs function to validate all inputs
   - [ ] throw error for invalid count
   - [ ] throw error for invalid option
@@ -24,7 +20,11 @@
 ### IDEAS / MAYBE :
 
 ### DONE :
-
+- [x] write the separate args function
+- [x] write a parser function to handle options
+  - [x] options at case '-n8'
+  - [x] options at case '-n', '8'
+  - [x] options at case '-8'
 - [ ] ~~use match instead of regex test~~
 - [ ] ~~change approach of passing separator.~~
 - [x] errors to be handled
