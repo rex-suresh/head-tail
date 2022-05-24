@@ -21,6 +21,7 @@
 - [x] handle case of ++100 file
   - [x] make `separateOptions fn` regex to support ++100 as not a option
 - [ ] make parse option to handle `+10` implies `-n +10`
+- [ ] handle case tail +n1 '+n1 taken as file' 
 
 ### DONE :
 
@@ -34,6 +35,7 @@
 ---------------------
 # HEAD
 ### TODO : 
+- [ ] has to solve error throw of head.js -na, asking arg
 - [ ] extract data manipulation into a different file.
 - [ ] make validation generic / extensible
 **NOTE**
