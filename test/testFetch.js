@@ -1,29 +1,29 @@
 const assert = require('assert');
-const { separateOptVal, separateArgs, parseOption } =
+const { separateOptVal, separateArgs, parseOption, parseTailOption } =
   require('../src/fetch.js');
 
 describe( 'separateOptVal', () => {
   it( 'should separate \'-c8\' to -c, 8', () => {
-    assert.strict.deepEqual(separateOptVal('-c8'), ['-c', 8]);
+    assert.strict.deepEqual(separateOptVal('-c8'), ['-c', '8']);
   });
 
   it( 'should separate \'-8\' to -, 8', () => {
-    assert.strict.deepEqual(separateOptVal('-8'), ['-', 8]);
+    assert.strict.deepEqual(separateOptVal('-8'), ['-', '8']);
   });
 });
 
 describe( 'separateArgs', () => {
   it( 'should separate one option and one file', () => {
     assert.strict.deepEqual(separateArgs(['-c8', 'apple']),
-      {options: [{option: '-c', limit: 8}], files: ['apple']});
+      {options: [{option: '-c', limit: '8'}], files: ['apple']});
   });
 
   it( 'should separate two option and file', () => {
     assert.strict.deepEqual(separateArgs(['-n1', '-n3', 'apple']),
       {
         options: [
-          { option: '-n', limit: 1 },
-          { option: '-n', limit: 3 }],
+          { option: '-n', limit: '1' },
+          { option: '-n', limit: '3' }],
         files: ['apple']
       });
   });
@@ -31,7 +31,7 @@ describe( 'separateArgs', () => {
   it( 'should separate option and files', () => {
     assert.strict.deepEqual(separateArgs(['-n13', 'apple', 'banana']),
       {
-        options: [{ option: '-n', limit: 13 }],
+        options: [{ option: '-n', limit: '13' }],
         files: ['apple', 'banana']
       });
   });
@@ -54,5 +54,58 @@ describe( 'parseOption', () => {
       { option: '-', limit: 13 }),
     { option: '-', limit: 13, filterOn: 'lines'});
   });
+});
 
+describe( 'parseTailOption', () => {
+  it( 'should parse a option with option -n, negative num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-n', limit: '-13' }),
+    { option: '-n', start: 0, count: 13, filterOn: 'lines'});
+  });
+
+  it( 'should parse a option with option -n, preceding + num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-n', limit: '+13' }),
+    { option: '-n', start: 13, count: 0, filterOn: 'lines'});
+  });
+
+  it( 'should parse a option with option -n, positive num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-n', limit: '13' }),
+    { option: '-n', start: 0, count: 13, filterOn: 'lines'});
+  });
+  it( 'should parse a option with option -c, negative num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-c', limit: '-13' }),
+    { option: '-c', start: 0, count: 13, filterOn: 'bytes'});
+  });
+
+  it( 'should parse a option with option -c, preceding + num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-c', limit: '+13' }),
+    { option: '-c', start: 13, count: 0, filterOn: 'bytes'});
+  });
+
+  it( 'should parse a option with option -c, positive num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-c', limit: '13' }),
+    { option: '-c', start: 0, count: 13, filterOn: 'bytes'});
+  });
+  it( 'should parse a option with option -, negative num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-', limit: '-13' }),
+    { option: '-', start: 0, count: 13, filterOn: 'lines'});
+  });
+
+  it( 'should parse a option with option -, preceding + num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-', limit: '+13' }),
+    { option: '-', start: 13, count: 0, filterOn: 'lines'});
+  });
+
+  it( 'should parse a option with option -, positive num', () => {
+    assert.strict.deepEqual(parseTailOption(
+      { option: '-', limit: '13' }),
+    { option: '-', start: 0, count: 13, filterOn: 'lines'});
+  });
 });

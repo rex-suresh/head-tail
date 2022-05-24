@@ -1,6 +1,5 @@
 # TAIL
 ### TODO : 
-- [ ] separate args to support +, - signs of values
 - [ ] write validators for tail args
   - [ ] validate the arguments
 - [ ] write parse option for tail
@@ -18,9 +17,11 @@
 
 ### IDEAS / MAYBE :
 
-- [ ] handle case of ++100 file
-  - [ ] make separateOptions regex to support ++100 as not a option
+- [x] handle case of ++100 file
+  - [x] make `separateOptions fn` regex to support ++100 as not a option
 ### DONE :
+
+- [x] separate args to support +, - signs of values
 - [x] write Todo
 - [x] take detailed note of tail contract
 - [x] separate arguments as of head
