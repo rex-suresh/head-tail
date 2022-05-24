@@ -1,6 +1,7 @@
 ### tail
 
 `usage: tail [-c # | -n #] [file ...]`
+`usage: tail  [-r] [-q] [-c # | -n #] [file ...]`
 
 ```
   -c number
@@ -8,6 +9,12 @@
 
   -n number
     The location is number lines.
+  
+  -q 
+    Suppresses printing of headers when multiple files are being examined.
+
+  -r
+    The -r option causes the input to be displayed in reverse order, by line. 
 ```
 
 ```

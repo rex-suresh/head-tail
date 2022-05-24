@@ -1,5 +1,5 @@
 const separateOptVal = function (arg) {
-  const [, option, value] = arg.match(/(-[A-z]?)(.*)?/);
+  const [, option, value] = arg.match(/([-+][A-z]?)(.*)?$/);
   return [option, value];
 };
 const isOption = (arg) => /^-[A-z-0-9]*$/.test(arg);
@@ -27,13 +27,18 @@ const parseOption = function (arg) {
   return arg;
 };
 
+const positionsOf = (value) => {
+  const start = value[0] === '+' ? value : 0;
+  const count = !start ? Math.abs(value) : 0;
+  return [start, count];
+};
+
 const parseTailOption = function (arg) {
   if (!arg) {
     return { option: '-n', start: 0, count: 10, filterOn: 'lines' };
   }
   const filterList = { '-n': 'lines', '-c': 'bytes', '-': 'lines' };
-  const start = arg.limit[0] === '+' ? arg.limit : 0;
-  const count = !start ? Math.abs(arg.limit) : 0;
+  const [start, count] = positionsOf(arg.limit);
   const parsedArg = {
     filterOn: filterList[arg.option],
     start: +start, count, option: arg.option

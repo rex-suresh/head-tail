@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { separateOptVal, separateArgs, parseOption, parseTailOption } =
-  require('../src/fetch.js');
+  require('../../src/head/fetch.js');
 
 describe( 'separateOptVal', () => {
   it( 'should separate \'-c8\' to -c, 8', () => {
@@ -9,6 +9,10 @@ describe( 'separateOptVal', () => {
 
   it( 'should separate \'-8\' to -, 8', () => {
     assert.strict.deepEqual(separateOptVal('-8'), ['-', '8']);
+  });
+
+  it( 'should separate \'+8\' to +, 8', () => {
+    assert.strict.deepEqual(separateOptVal('+8'), ['+', '8']);
   });
 });
 

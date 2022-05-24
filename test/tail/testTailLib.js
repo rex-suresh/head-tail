@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { tail, itemsOf } = require('../src/tailLib.js');
+const { tail, itemsOf } = require('../../src/tail/tailLib.js');
 
 describe( 'tail', () => {
   it( 'should give one line, from content', () => {
@@ -56,6 +56,15 @@ describe( 'tail', () => {
         { start: 1, count: 0, filterOn: 'bytes' }), 'hi\nhello');
   });
 
+  // it( 'should give 0 elements', () => {
+  //   assert.equal(
+  //     tail('hello\nhi\nhey',
+  //       { start: -1, count: -2, filterOn: 'bytes' }), '');
+  //   assert.equal(
+  //     tail('hello\nhi\nhey',
+  //       { start: -1, count: -2, filterOn: 'lines' }), '');
+  // }); // unnecessary test
+  
   it( 'should give bytes, from 2 in content', () => {
     assert.equal(
       tail('hello\nhi\nhey',

@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { checkArgs } = require(
-  '../src/validate.js');
+  '../../src/head/validate.js');
 
 describe( 'checkArgs', () => {
   it( 'should not throw an error when args are as expected', () => {

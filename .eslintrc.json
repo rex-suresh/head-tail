@@ -107,7 +107,8 @@
     },
     {
       "files": [
-        "head.js"
+        "head.js",
+        "tail.js"
       ],
       "rules": {
         "no-console": "off"

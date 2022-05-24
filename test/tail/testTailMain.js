@@ -1,5 +1,5 @@
 const assert = require('assert');
-const {main} = require('../../src/head/headMain.js');
+const {main} = require('../../src/tail/tailMain.js');
 
 const mockReadFile = (content, expFileName, expEncoding) => {
   let index = 0;
@@ -44,7 +44,7 @@ describe( 'main', () => {
     assert.equal(
       main(
         mockConsole([]),
-        mockConsole([['head: abc: No such file or directory']]),
+        mockConsole([['tail: abc: No such file or directory']]),
         () => {
           throw { message: 'ENOENT: no such file or directory, open \'abc\'' };
         },
@@ -55,7 +55,7 @@ describe( 'main', () => {
     assert.equal(
       main(
         mockConsole([]),
-        mockConsole([['head: abc: Permission denied']]),
+        mockConsole([['tail: abc: Permission denied']]),
         () => {
           throw { message: 'ENOENT: permission denied, open \'abc\'' };
         },
@@ -66,8 +66,8 @@ describe( 'main', () => {
     assert.equal(
       main(
         mockConsole([]),
-        mockConsole([['head:', 'option requires an argument -- n\n' +
-        'usage: head [-n lines | -c bytes] [file ...]']]),
+        mockConsole([['tail:', 'option requires an argument -- n\n' +
+        'usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]']]),
         () => {},
         ['-n']), undefined);
   });
@@ -75,27 +75,18 @@ describe( 'main', () => {
   it( 'should show usage arg is --help', () => {
     assert.equal(
       main(
-        mockConsole([['usage: head [-n lines | -c bytes] [file ...]']]),
+        mockConsole([['usage: tail [-r] [-q] [-c # | -n #] [file ...]']]),
         mockConsole([]),
         () => {},
         ['--help']), undefined);
   });
 
-  it( 'should show error illegal line count', () => {
+  it( 'should show error illegal offset', () => {
     assert.equal(
       main(
         mockConsole([]),
-        mockConsole([['head:', 'illegal line count -- a']]),
+        mockConsole([['tail:', 'illegal offset -- a']]),
         () => {},
         ['-na']), undefined);
-  });
-
-  it( 'should show error illegal line count', () => {
-    assert.equal(
-      main(
-        mockConsole([]),
-        mockConsole([['head:', 'illegal line count -- -1']]),
-        () => {},
-        ['-n-1']), undefined);
   });
 });
