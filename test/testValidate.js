@@ -42,4 +42,13 @@ describe( 'checkArgs', () => {
       message: 'illegal line count -- -2'
     });
   });
+
+  it( 'should throw illegal value error when letter is given as value', () => {
+    assert.throws(() => checkArgs({
+      options:
+        [{ limit: 'a', option: '-n' }], files: ['apple']
+    }), {
+      message: 'illegal line count -- a'
+    });
+  });
 });

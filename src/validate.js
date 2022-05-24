@@ -28,14 +28,14 @@ const combinedOptionThrow = () => {
 };
 
 const validateValue = function (arg) {
-  if (!isFinite(arg.limit) || arg.limit < 1) {
+  if (!isFinite(+arg.limit) || +arg.limit < 1) {
     const optionName = arg.option === '-c' ? 'bytes' : 'line';
     illegalValueThrow(optionName, arg.limit);
   }
 };
 
 const validateValueExist = function (arg) {
-  if (isNaN(arg.limit)) {
+  if (!arg.limit) {
     optionReqArgThrow(arg.option);
   }
 };
@@ -59,14 +59,19 @@ const validateOptions = function (options) {
   options.forEach((option) => {
     validateValueExist(option);
     validateValue(option);
-});
+  });
 };
 
-const validate = function (args) {
-  validateOptions(args.options);
+const validate = function (args, validateOpts, usage) {
+  validateOpts(args.options);
   if (args.files.length < 1) {
-    usageThrow();
+    usage();
   }
 };
 
-exports.checkArgs = validate;
+const validateHeadArgs = function (args) {
+  validate(args, validateOptions, usageThrow);  
+};
+
+exports.validate = validate;
+exports.checkArgs = validateHeadArgs;

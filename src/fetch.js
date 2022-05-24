@@ -1,8 +1,8 @@
 const separateOptVal = function (arg) {
-  const [, option, value] = arg.match(/([-+][A-z]?)([-+]?[0-9]+)?/);
+  const [, option, value] = arg.match(/(-[A-z]?)(.*)?/);
   return [option, value];
 };
-const isOption = (arg) => /^[-+][A-z0-9]*$/.test(arg);
+const isOption = (arg) => /^-[A-z-0-9]*$/.test(arg);
 
 const separateArgs = function (allArgs) {
   const args = [...allArgs];
@@ -11,7 +11,7 @@ const separateArgs = function (allArgs) {
   while (args.length > 0 && isOption(args[0])) {
     const arg = args.shift();
     const [option, value] = separateOptVal(arg);
-    const limit = isFinite(value) ? value : args.shift();
+    const limit = value ? value : args.shift();
     options.push({option, limit});
   }
   return { options, files: args };
