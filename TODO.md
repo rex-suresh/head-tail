@@ -3,8 +3,6 @@
 - [ ] write validators for tail args
   - [ ] validate the arguments
 - [ ] write parse option for tail
-- [ ] create a tailLib
-  - [ ] core fns
 - [ ] throw errors
 - [ ] catch errors and console error messages
 - [ ] implement main to be injected with dependencies
@@ -17,8 +15,13 @@
 
 ### IDEAS / MAYBE :
 
+- [x] create a tailLib
+  - [x] core fns
+  - [x] test core fns
 - [x] handle case of ++100 file
   - [x] make `separateOptions fn` regex to support ++100 as not a option
+- [ ] make parse option to handle `+10` implies `-n +10`
+
 ### DONE :
 
 - [x] separate args to support +, - signs of values
