@@ -1,0 +1,56 @@
+inputs => args
+        separate args
+               V
+    handle args at cases : '-c8', '-c' '8', '-8', '+8'
+               V
+      validate the inputs
+               V
+      select a final option
+               V
+ maintain a rich structure => 
+    { option: '-c', filterOn: 'bytes', limit: '8' }
+               V
+create a option with start and count values 
+               V
+    pass option to tail
+------------------------------------------------
+    capture file contents
+               V
+pass file contents to head    <+== along with option
+               V
+break content based on filter specified
+               V
+          return data
+-------------------------------------------------
+error throws: 
+-------------
+    (input validation level)
+invalid offset (value)
+invalid option
+combination
+repeated same options
+
+    (process level)
+---(NO HELP) usage
+
+    (fs level)
+no file/dir
+permission denied
+----------------------------------------------------
+
+take a arg check for structure (start with -)
+- break if multiple options are available
+create a option object
+        -- break at validation level
+        * -- check for multiple options
+
+
+start tail with files and single option 
+
+format the output
+        - for multiple files `==> abc <==` header
+        - single file no header
+----------------------------------------------------
+notes : 
+    errors to be thrown via error stream
+    error changes the exit status of process (1)

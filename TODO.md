@@ -1,12 +1,13 @@
 # TAIL
 ### TODO : 
-- [ ] write Todo
-- [ ] take detailed note of tail contract
-- [ ] separate arguments as of head
-- [ ] validate the arguments
+- [ ] separate args to support +, - signs of values
+- [ ] write validators for tail args
+  - [ ] validate the arguments
+- [ ] write parse option for tail
 - [ ] create a tailLib
+  - [ ] core fns
+- [ ] throw errors
 - [ ] catch errors and console error messages
-- [ ] 
 - [ ] implement main to be injected with dependencies
 
 **NOTE**
@@ -17,7 +18,13 @@
 
 ### IDEAS / MAYBE :
 
+- [ ] handle case of ++100 file
+  - [ ] make separateOptions regex to support ++100 as not a option
 ### DONE :
+- [x] write Todo
+- [x] take detailed note of tail contract
+- [x] separate arguments as of head
+    - ( using head arg parser )
 
 
 ---------------------

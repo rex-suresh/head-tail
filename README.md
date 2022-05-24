@@ -1,3 +1,34 @@
+### tail
+
+`usage: tail [-c # | -n #] [file ...]`
+
+```
+  -c number
+    The location is number bytes.
+
+  -n number
+    The location is number lines.
+```
+
+```
+Numbers having a leading plus 
+  (`+') sign are relative to the beginning of the input, 
+for example, ``-c +2'' starts the display at the second byte of the input.
+
+Numbers having a leading minus
+ (`-') sign or no explicit sign are relative to the end of the input,
+for example, ``-n 2'' displays the last two lines of the input. 
+
+The default starting location is ``-n 10'', or the last 10 
+lines of the input.
+
+If more than a single file is specified,
+each file is preceded by a header consisting of the string
+ ``==> XXX <=='' where ``XXX'' is the name of the file.
+```
+------------------------
+
+
 ### head
 
 `usage: head [-n lines | -c bytes] [file ...]`
