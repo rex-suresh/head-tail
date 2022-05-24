@@ -40,7 +40,7 @@ describe( 'main', () => {
         ['-n', '1', 'a.txt', 'b.txt']), undefined);
   });
 
-  it( 'should show error when called with bad file', () => {
+  it( 'should show error when called with no file exist', () => {
     assert.equal(
       main(
         mockConsole([]),
@@ -49,5 +49,53 @@ describe( 'main', () => {
           throw { message: 'ENOENT: no such file or directory, open \'abc\'' };
         },
         ['-n', '1', 'abc']), undefined);
+  });
+
+  it( 'should show error when file not readable', () => {
+    assert.equal(
+      main(
+        mockConsole([]),
+        mockConsole([['head: abc: Permission denied']]),
+        () => {
+          throw { message: 'ENOENT: permission denied, open \'abc\'' };
+        },
+        ['-n', '1', 'abc']), undefined);
+  });
+
+  it( 'should show error arg not provided', () => {
+    assert.equal(
+      main(
+        mockConsole([]),
+        mockConsole([['head:', 'option requires an argument -- n\n' +
+        'usage: head [-n lines | -c bytes] [file ...]']]),
+        () => {},
+        ['-n']), undefined);
+  });
+
+  it( 'should show usage arg is --help', () => {
+    assert.equal(
+      main(
+        mockConsole([['usage: head [-n lines | -c bytes] [file ...]']]),
+        mockConsole([]),
+        () => {},
+        ['--help']), undefined);
+  });
+
+  it( 'should show error illegal line count', () => {
+    assert.equal(
+      main(
+        mockConsole([]),
+        mockConsole([['head:', 'illegal line count -- a']]),
+        () => {},
+        ['-na']), undefined);
+  });
+
+  it( 'should show error illegal line count', () => {
+    assert.equal(
+      main(
+        mockConsole([]),
+        mockConsole([['head:', 'illegal line count -- -1']]),
+        () => {},
+        ['-n-1']), undefined);
   });
 });

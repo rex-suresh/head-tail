@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 /* eslint-disable no-process-exit */
 
 const { head } = require('./headLib.js');
@@ -5,22 +6,21 @@ const { checkArgs } = require('./validate.js');
 const { formatOutput, formatErrorMessage } = require('./formatOutput.js');
 const { separateArgs, parseOption } = require('./fetch.js');
 
-const isHelp = (log, arg) => {
-  if (arg === '--help') {
-    log('usage: head [-n lines | -c bytes] [file ...]');
-    process.exit(1);
-  }
-};
-
 const main = function (log, showError, readFile, args) {
-  isHelp(log, args[0]);
+  
+  if (args[0] === '--help') {
+    log('usage: head [-n lines | -c bytes] [file ...]');
+    process.exitCode = 1;
+    return;
+  }
   
   const parsedArgs = separateArgs(args);
   try {
     checkArgs(parsedArgs);
   } catch (error) {
     showError('head:', error.message);
-    process.exit(1);
+    process.exitCode = 1;
+    return;
   }
   
   const { options, files } = parsedArgs;
