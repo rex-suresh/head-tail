@@ -47,6 +47,8 @@
 ### IDEAS / MAYBE :
 
 ### DONE :
+- [x] extract fileSystem related try Catch into separate fn
+- [x] make formatOutput to support object structured data
 - [x] remove eslint exceptions in files
 - [x] delete separate and join lines fns
 - [x] remove unnecessary assertions in test
