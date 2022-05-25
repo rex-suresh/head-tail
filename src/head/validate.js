@@ -1,6 +1,3 @@
-/* eslint-disable no-process-exit */
-/* eslint-disable no-console */
-
 const illegalOptionThrow = (option) => {
   throw {
     message: `illegal option -- ${option[1]

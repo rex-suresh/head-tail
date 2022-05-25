@@ -38,8 +38,6 @@
 ---------------------
 # HEAD
 ### TODO : 
-- [ ] has to solve error throw of head.js -na, asking arg
-- [ ] extract data manipulation into a different file.
 - [ ] make validation generic / extensible
 **NOTE**
   - [ ] **follow the todo**
@@ -49,6 +47,11 @@
 ### IDEAS / MAYBE :
 
 ### DONE :
+- [x] remove eslint exceptions in files
+- [x] delete separate and join lines fns
+- [x] remove unnecessary assertions in test
+- [ ] ~~extract data manipulation into a different file.~~
+- [x] solve error throw of head.js -na, asking arg
 - [x] change approach based on process written.
 - [x] Test main with mocking
 - [x] errors to be thrown via error stream

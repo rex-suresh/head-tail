@@ -1,6 +1,5 @@
 const assert = require('assert');
-const { head, separateParts, firstNParts } =
-  require('../../src/head/headLib.js');
+const { head, firstNParts } = require('../../src/head/headLib.js');
 
 describe( 'head', () => {
   it( 'should return single line', () => {
@@ -36,13 +35,6 @@ describe( 'head', () => {
       'he');
     assert.equal(head('tata', {limit: 2, option: '-c', filterOn: 'bytes'}),
       'ta');
-  });
-});
-
-describe( 'separateParts', () => {
-  it( 'should separate string content based on separator provided', () => {
-    assert.strict.deepEqual(separateParts('a\nb\nc', '\n'), ['a', 'b', 'c']);
-    assert.strict.deepEqual(separateParts('abc', ''), ['a', 'b', 'c']);
   });
 });
 
