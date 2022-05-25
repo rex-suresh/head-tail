@@ -1,9 +1,9 @@
 # TAIL
 ### TODO : 
+- [ ] write parser for tail
 - [ ] write validators for tail args
   - [ ] validate the arguments
-- [ ] write parse option for tail
-- [ ] throw errors
+- [ ] throw errors(list in process file)
 - [ ] catch errors and console error messages
 - [ ] implement main to be injected with dependencies
 
@@ -20,8 +20,8 @@
   - [x] test core fns
 - [x] handle case of ++100 file
   - [x] make `separateOptions fn` regex to support ++100 as not a option
-- [ ] make parse option to handle `+10` implies `-n +10`
-- [ ] handle case tail +n1 '+n1 taken as file' 
+- [x] make parse option to handle `+10` implies `-n +10`
+- [x] handle case tail +n1 '+n1 taken as file' 
 
 ### DONE :
 
