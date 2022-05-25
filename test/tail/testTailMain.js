@@ -67,7 +67,7 @@ describe( 'main', () => {
       main(
         mockConsole([]),
         mockConsole([['tail:', 'option requires an argument -- n\n' +
-        'usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]']]),
+        'usage: tail [-r] [-q] [-c # | -n #] [file ...]']]),
         () => {},
         ['-n']), undefined);
   });
@@ -88,5 +88,15 @@ describe( 'main', () => {
         mockConsole([['tail:', 'illegal offset -- a']]),
         () => {},
         ['-na']), undefined);
+  });
+  it( 'should show error illegal option', () => {
+    assert.equal(
+      main(
+        mockConsole([]),
+        mockConsole([['tail:',
+          'illegal option -- x\nusage: tail [-r] [-q] [-c # | -n #] [file ...]'
+        ]]),
+        () => {},
+        ['-xa']), undefined);
   });
 });

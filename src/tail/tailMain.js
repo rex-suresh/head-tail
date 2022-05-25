@@ -2,9 +2,8 @@
 /* eslint-disable no-process-exit */
 
 const { tail } = require('./tailLib.js');
-const { validateTailArgs } = require('./tailValidateFns.js');
 const { formatOutput, formatErrorMessage } = require('../formatOutput.js');
-const { separateArgs, parseTailOption } = require('../head/fetch.js');
+const { fetchArgs, parseTailOption } = require('./fetch.js');
 
 const main = function (log, showError, readFile, args) {
   if (args[0] === '--help') {
@@ -12,22 +11,26 @@ const main = function (log, showError, readFile, args) {
     process.exitCode = 1;
     return;
   }
-  const parsedArgs = separateArgs(args);
+
+  let parsedArgs;
   try {
-    validateTailArgs(parsedArgs);
+    parsedArgs = fetchArgs(args);
   } catch (error) {
     showError('tail:', error.message);
     process.exitCode = 1;
     return;
   }
-  const { options, files } = parsedArgs;
-  const finalOption = parseTailOption(options[ options.length - 1]);
+
+  const { options, files, switches } = parsedArgs;
+  const finalOption = parseTailOption(options.pop());
   
   let logCount = 0;
   files.forEach((file) => {
     try {
-      const tailOutput = tail(readFile(file, 'utf8'), finalOption);
-      log(formatOutput(tailOutput, file, files.length, logCount));
+      const tailOutput = tail(
+        readFile(file, 'utf8'), finalOption, switches.reverse);
+      log(formatOutput(
+        tailOutput, [file, files.length, logCount], switches.quiet));
       logCount++;
     } catch (error) {
       const message = formatErrorMessage(error.message, file, 'tail');

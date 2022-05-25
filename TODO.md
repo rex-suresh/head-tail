@@ -4,8 +4,8 @@
 - [x] write validators for tail args
   - [x] validate the arguments
 - [x] throw errors(list in process file)
-- [ ] catch errors and console error messages
-- [ ] implement main to be injected with dependencies
+- [x] catch errors and console error messages
+- [x] implement main to be injected with dependencies
 
 **NOTE**
   - [ ] **follow the todo**
