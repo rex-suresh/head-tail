@@ -1,6 +1,8 @@
 # TAIL
 ### TODO : 
   - [ ] REFACTOR CODE
+  - [x] implement reverse functionality
+    - [ ] test reverse functionality
 **NOTE**
   - [ ] **follow the todo**
   - [ ] break complex code
