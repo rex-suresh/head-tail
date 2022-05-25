@@ -1,9 +1,9 @@
 # TAIL
 ### TODO : 
-- [ ] write parser for tail
-- [ ] write validators for tail args
-  - [ ] validate the arguments
-- [ ] throw errors(list in process file)
+- [x] write parser for tail
+- [x] write validators for tail args
+  - [x] validate the arguments
+- [x] throw errors(list in process file)
 - [ ] catch errors and console error messages
 - [ ] implement main to be injected with dependencies
 
@@ -11,7 +11,7 @@
   - [ ] **follow the todo**
   - [ ] break complex code
   - [ ] errors to be thrown via error stream
-  - [ ] error changes the exit status of process (1)
+  - [x] error changes the exit status of process (1)
 
 ### IDEAS / MAYBE :
 

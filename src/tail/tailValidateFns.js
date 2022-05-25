@@ -1,6 +1,5 @@
-const {validate} = require('../head/validate.js');
-
 const usage = () => 'usage: tail [-r] [-q] [-c # | -n #] [file ...]';
+
 const illegalOptionThrow = (option) => {
   throw {
     message: `illegal option -- ${option[1]
@@ -18,36 +17,35 @@ const illegalOffsetThrow = (value) => {
   throw { message: `illegal offset -- ${value}` };
 };
 
-const noArgThrow = () => {
+const noArgThrow = (key) => {
   throw {
-    message: `option requires an argument -- ${option[1]}\n${usage()}`
+    message: `option requires an argument -- ${key[1]}\n${usage()}`
   };
 };
 
-const validateTailValue = function (arg) {
-  if (arg.limit === undefined) {
-    noArgThrow();
+const validateValue = function (value, key) {
+  if (value === undefined) {
+    noArgThrow(key);
   }
-  if (!isFinite(arg.limit)) {
-    illegalOffsetThrow(arg.limit);
+  if (!isFinite(value)) {
+    illegalOffsetThrow(value);
   }
 };
 
-const validateOption = function (arg) {
-  if (!/^-[cn]?/.test(arg.option)) {
-    illegalOptionThrow(arg.option);
+const validateSwitch = function (key) {
+  const switches = ['-c', '-n', '-r', '-q', '+', '-'];
+  if (!switches.includes(key)) {
+    illegalOptionThrow(key);
   }
-  validateTailValue(arg);
 };
 
-const validateTailOptions = function (options) {
-  options.forEach(file => {
-    validateOption(file);
-  });
+const validateSwitchStatus = function (key, switches, options) {
+  if (switches[options[key]]) {
+    tailUsageThrow();
+  }
 };
 
-const validateTailArgs = function (args) {
-  validate(args, validateTailOptions, tailUsageThrow);  
-};
-
-exports.validateTailArgs = validateTailArgs;
+exports.usage = usage;
+exports.validateSwitch = validateSwitch;
+exports.validateSwitchStatus = validateSwitchStatus;
+exports.validateValue = validateValue;

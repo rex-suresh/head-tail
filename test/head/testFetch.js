@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { separateOptVal, separateArgs, parseOption, parseTailOption } =
+const { separateOptVal, separateArgs, parseOption } =
   require('../../src/head/fetch.js');
 
 describe( 'separateOptVal', () => {
@@ -57,59 +57,5 @@ describe( 'parseOption', () => {
     assert.strict.deepEqual(parseOption(
       { option: '-', limit: 13 }),
     { option: '-', limit: 13, filterOn: 'lines'});
-  });
-});
-
-describe( 'parseTailOption', () => {
-  it( 'should parse a option with option -n, negative num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-n', limit: '-13' }),
-    { option: '-n', start: 0, count: 13, filterOn: 'lines'});
-  });
-
-  it( 'should parse a option with option -n, preceding + num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-n', limit: '+13' }),
-    { option: '-n', start: 13, count: 0, filterOn: 'lines'});
-  });
-
-  it( 'should parse a option with option -n, positive num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-n', limit: '13' }),
-    { option: '-n', start: 0, count: 13, filterOn: 'lines'});
-  });
-  it( 'should parse a option with option -c, negative num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-c', limit: '-13' }),
-    { option: '-c', start: 0, count: 13, filterOn: 'bytes'});
-  });
-
-  it( 'should parse a option with option -c, preceding + num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-c', limit: '+13' }),
-    { option: '-c', start: 13, count: 0, filterOn: 'bytes'});
-  });
-
-  it( 'should parse a option with option -c, positive num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-c', limit: '13' }),
-    { option: '-c', start: 0, count: 13, filterOn: 'bytes'});
-  });
-  it( 'should parse a option with option -, negative num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-', limit: '-13' }),
-    { option: '-', start: 0, count: 13, filterOn: 'lines'});
-  });
-
-  it( 'should parse a option with option -, preceding + num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-', limit: '+13' }),
-    { option: '-', start: 13, count: 0, filterOn: 'lines'});
-  });
-
-  it( 'should parse a option with option -, positive num', () => {
-    assert.strict.deepEqual(parseTailOption(
-      { option: '-', limit: '13' }),
-    { option: '-', start: 0, count: 13, filterOn: 'lines'});
   });
 });
