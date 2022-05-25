@@ -1,6 +1,6 @@
 # TAIL
 ### TODO : 
-
+  - [ ] REFACTOR CODE
 **NOTE**
   - [ ] **follow the todo**
   - [ ] break complex code
