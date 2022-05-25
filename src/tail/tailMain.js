@@ -30,7 +30,7 @@ const main = function (log, showError, readFile, args) {
       const tailOutput = tail(
         readFile(file, 'utf8'), finalOption, switches.reverse);
       log(formatOutput(
-        tailOutput, [file, files.length, logCount], switches.quiet));
+        tailOutput, file, files.length, logCount, switches.quiet));
       logCount++;
     } catch (error) {
       const message = formatErrorMessage(error.message, file, 'tail');

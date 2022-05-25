@@ -1,11 +1,5 @@
 # TAIL
 ### TODO : 
-- [x] write parser for tail
-- [x] write validators for tail args
-  - [x] validate the arguments
-- [x] throw errors(list in process file)
-- [x] catch errors and console error messages
-- [x] implement main to be injected with dependencies
 
 **NOTE**
   - [ ] **follow the todo**
@@ -25,6 +19,13 @@
 
 ### DONE :
 
+- [x] write parser for tail
+- [x] write validators for tail args
+  - [x] validate the arguments
+- [x] throw errors(list in process file)
+- [x] catch errors and console error messages
+- [x] implement main to be injected with dependencies
+- [x] make format output to support quiet '-q' switch
 - [x] separate args to support +, - signs of values
 - [x] write Todo
 - [x] take detailed note of tail contract
