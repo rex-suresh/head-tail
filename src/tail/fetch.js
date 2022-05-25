@@ -60,7 +60,7 @@ const parseOption = (args) => {
 
 const fetchArgs = (args) => {
   if (args.length < 1) {
-    usage();
+    throw { message: usage() };
   }
   
   const masterOption = {
@@ -90,6 +90,10 @@ const fetchArgs = (args) => {
   }
   
   masterOption.files.push(...separatedArgs);
+  
+  if (masterOption.options.length > 1) {
+    throw { message: usage() };
+  }
   return masterOption;
 };
 

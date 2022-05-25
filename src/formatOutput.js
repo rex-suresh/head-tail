@@ -7,10 +7,11 @@ const formatErrorMessage = (message, fileName, processName) => {
     newMessage.slice(0, newMessage.lastIndexOf(',')))}`;
 };
 
-const formatOutput = (headOutput, fileName, fileCount, logCount, quietMode) => {
+const formatOutput = (
+  headOutput, { fileName, fileCount, logStatus, quietMode}) => {
   const formattedOutPut = formatName(fileName).concat('\n', headOutput);
   const output = fileCount > 1 ? formattedOutPut : headOutput;
-  const gap = logCount > 0 ? '\n' : '';
+  const gap = logStatus ? '\n' : '';
   if (quietMode) {
     return headOutput;
   }
