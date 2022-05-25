@@ -50,7 +50,7 @@
     "key-spacing": "error",
     "max-len": "error",
     "max-params": [
-      "error",
+      "warn",
       {
         "max": 4
       }
@@ -112,6 +112,15 @@
       ],
       "rules": {
         "no-console": "off"
+      }
+    },
+    {
+      "files": [
+        "headMain.js",
+        "tailMain.js"
+      ],
+      "rules": {
+        "max-statements": "off"
       }
     }
   ]
