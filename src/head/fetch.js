@@ -1,10 +1,10 @@
-const separateOptVal = function (arg) {
+const separateOptVal = (arg) => {
   const [, option, value] = arg.match(/([-+][A-z]?)(.*)?$/);
   return [option, value];
 };
 const isOption = (arg) => /^-[A-z-0-9]*$/.test(arg);
 
-const separateArgs = function (allArgs) {
+const separateArgs = (allArgs) => {
   const args = [...allArgs];
   const options = [];
   
@@ -17,7 +17,7 @@ const separateArgs = function (allArgs) {
   return { options, files: args };
 };
 
-const parseOption = function (arg) {
+const parseOption = (arg) => {
   if (!arg) {
     return { option: '-n', limit: 10, filterOn: 'lines' };
   }

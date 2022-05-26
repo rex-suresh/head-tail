@@ -3,8 +3,7 @@ const { checkArgs } = require('./validate.js');
 const { separateArgs, parseOption } = require('./fetch.js');
 const { formatOutput, formatErrorMessage } = require('../formatOutput.js');
 
-const headFile = function (
-  {finalOption, fileCount}, { readFile, log, showError }) {
+const headFile = ({finalOption, fileCount}, { readFile, log, showError }) => {
   let logStatus = false;
   
   return (fileName) => {
@@ -20,7 +19,7 @@ const headFile = function (
   };
 };
 
-const main = function (log, showError, readFile, args) {
+const main = (log, showError, readFile, args) => {
   if (args[0] === '--help') {
     log('usage: head [-n lines | -c bytes] [file ...]');
     process.exitCode = 1;

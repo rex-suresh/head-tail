@@ -24,20 +24,20 @@ const combinedOptionThrow = () => {
   throw { message: 'can\'t combine line and byte counts' };
 };
 
-const validateValue = function (arg) {
+const validateValue = (arg) => {
   if (!isFinite(+arg.limit) || +arg.limit < 1) {
     const optionName = arg.option === '-c' ? 'bytes' : 'line';
     illegalValueThrow(optionName, arg.limit);
   }
 };
 
-const validateValueExist = function (arg) {
+const validateValueExist = (arg) => {
   if (!arg.limit) {
     optionReqArgThrow(arg.option);
   }
 };
 
-const validateOption = function () {
+const validateOption = () => {
   const knownOptionsPattern = /^-[cn]?$/;
   const options = [];
   return (arg) => {
@@ -51,7 +51,7 @@ const validateOption = function () {
   };
 };
 
-const validateOptions = function (options) {
+const validateOptions = (options) => {
   options.forEach(validateOption());
   options.forEach((option) => {
     validateValueExist(option);
@@ -59,14 +59,14 @@ const validateOptions = function (options) {
   });
 };
 
-const validate = function (args, validateOpts, usage) {
+const validate = (args, validateOpts, usage) => {
   validateOpts(args.options);
   if (args.files.length < 1) {
     usage();
   }
 };
 
-const validateHeadArgs = function (args) {
+const validateHeadArgs = (args) => {
   validate(args, validateOptions, usageThrow);  
 };
 
