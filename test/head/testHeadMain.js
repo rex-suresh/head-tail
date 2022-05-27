@@ -14,87 +14,82 @@ const mockReadFile = (content, expFileName, expEncoding) => {
 const mockConsole = (expText) => {
   let index = 0;
   return (...text) => {
-    assert.deepEqual(text, expText[index]);
+    assert.deepStrictEqual(text, expText[index]);
     index++;
   };
 };
 
 describe( 'main', () => {
-  it( 'should return 1 line when called with args', () => {
-    main(
-      mockConsole([['hello']]),
-      mockConsole([]),
-      mockReadFile(['hello'], ['a.txt'], 'utf8'),
-      ['-n', '1', 'a.txt']);
+  it('should return 1 line when called with args', () => {
+    const log = mockConsole([['hello']]); 
+    const showError = mockConsole([]);
+    const readFile = mockReadFile(['hello'], ['a.txt'], 'utf8');
+    assert.doesNotThrow(() =>
+      main(log, showError, readFile, ['-n', '1', 'a.txt']));
   });
 
   it( 'should return 2 lines when called with args', () => {
+    const log = mockConsole(
+      [['==> a.txt <==\nhello'], ['\n==> b.txt <==\nhey']]); 
+    const showError = mockConsole([]);
+    const readFile = mockReadFile(
+      ['hello', 'hey'], ['a.txt', 'b.txt'], 'utf8');
     
-    main(
-      mockConsole([['==> a.txt <==\nhello'], ['\n==> b.txt <==\nhey']]),
-      mockConsole([]),
-      mockReadFile(
-        ['hello', 'hey'],
-        ['a.txt', 'b.txt'], 'utf8'),
-      ['-n', '1', 'a.txt', 'b.txt']);
+    assert.doesNotThrow(() =>
+      main(log, showError, readFile, ['-n', '1', 'a.txt', 'b.txt']));
   });
 
   it( 'should show error when called with no file exist', () => {
-    
-    main(
-      mockConsole([]),
-      mockConsole([['head: abc: No such file or directory']]),
-      () => {
-        throw { message: 'ENOENT: no such file or directory, open \'abc\'' };
-      },
-      ['-n', '1', 'abc']);
+    const log = mockConsole([]); 
+    const showError = mockConsole([['head: abc: No such file or directory']]);
+    const readFile = () => {
+      throw { message: 'ENOENT: no such file or directory, open \'abc\'' };
+    };
+    assert.doesNotThrow(() =>
+      main(log, showError, readFile, ['-n', '1', 'abc']));
   });
 
   it( 'should show error when file not readable', () => {
-    
-    main(
-      mockConsole([]),
-      mockConsole([['head: abc: Permission denied']]),
-      () => {
-        throw { message: 'ENOENT: permission denied, open \'abc\'' };
-      },
-      ['-n', '1', 'abc']);
+    const log = mockConsole([]); 
+    const showError = mockConsole([['head: abc: Permission denied']]);
+    const readFile = () => {
+      throw { message: 'ENOENT: permission denied, open \'abc\'' };
+    };
+    assert.doesNotThrow(() =>
+      main(log, showError, readFile, ['-n', '1', 'abc']));
   });
 
   it( 'should show error arg not provided', () => {
-    
-    main(
-      mockConsole([]),
-      mockConsole([['head:', 'option requires an argument -- n\n' +
-        'usage: head [-n lines | -c bytes] [file ...]']]),
-      () => {},
-      ['-n']);
+    const log = mockConsole([]); 
+    const showError = mockConsole([
+      ['head:', 'option requires an argument -- n\n' +
+    'usage: head [-n lines | -c bytes] [file ...]']]);
+    const readFile = () => {
+      throw { message: 'ENOENT: permission denied, open \'abc\'' };
+    };
+    assert.doesNotThrow(() =>
+      main(log, showError, readFile, ['-n']));
   });
 
   it( 'should show usage arg is --help', () => {
-    
-    main(
-      mockConsole([['usage: head [-n lines | -c bytes] [file ...]']]),
-      mockConsole([]),
-      () => {},
-      ['--help']);
+    const log = mockConsole([['usage: head [-n lines | -c bytes] [file ...]']]);
+    const showError = mockConsole([]);
+    assert.doesNotThrow(() =>
+      main(log, showError, () => { }, ['--help']));
   });
 
   it( 'should show error illegal line count', () => {
-    
-    main(
-      mockConsole([]),
-      mockConsole([['head:', 'illegal line count -- a']]),
-      () => {},
-      ['-na']);
+    const log = mockConsole([]);
+    const showError = mockConsole([['head:', 'illegal line count -- a']]);
+    assert.doesNotThrow(() =>
+      main(log, showError, () => { }, ['-na']));
   });
 
   it( 'should show error illegal line count', () => {
+    const log = mockConsole([]);
+    const showError = mockConsole([['head:', 'illegal line count -- -1']]);
     
-    main(
-      mockConsole([]),
-      mockConsole([['head:', 'illegal line count -- -1']]),
-      () => {},
-      ['-n-1']);
+    assert.doesNotThrow(() =>
+      main(log, showError, () => { }, ['-n-1']));
   });
 });
