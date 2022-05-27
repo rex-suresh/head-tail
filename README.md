@@ -1,6 +1,6 @@
 ### tail
 
-`usage: tail [-c # | -n #] [file ...]`
+~~`usage: tail [-c # | -n #] [file ...]`~~
 `usage: tail  [-r] [-q] [-c # | -n #] [file ...]`
 
 ```
