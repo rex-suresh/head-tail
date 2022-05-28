@@ -3,6 +3,7 @@
   - [ ] REFACTOR CODE
   - [x] implement reverse functionality
     - [ ] test reverse functionality
+
 **NOTE**
   - [ ] **follow the todo**
   - [ ] break complex code
@@ -37,8 +38,18 @@
 
 ---------------------
 # HEAD
-### TODO : 
-- [ ] make validation generic / extensible
+### TODO :
+
+- [ ] change contract of head file to take content
+  - [ ] separate concern of file error catch from headFile
+  - [ ] take items and iterate over fileContents
+
+- [ ] write a print outputs function
+  - [ ] should inject dependencies
+  - [ ] should print outputs according to files provided
+- [ ] re look over old testCases
+  - [ ] remove duplicate or useless tests
+
 **NOTE**
   - [ ] **follow the todo**
   - [ ] break complex code
@@ -46,7 +57,13 @@
 
 ### IDEAS / MAYBE :
 
+- [ ] check and rename variable and function names
+- [ ] make validation generic / extensible
+
 ### DONE :
+- [x] refactor fetch to be readable
+  - [x] test isOption
+- [x] organize readme
 - [x] extract fileSystem related try Catch into separate fn
 - [x] make formatOutput to support object structured data
 - [x] remove eslint exceptions in files

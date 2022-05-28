@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { separateOptVal, separateArgs, parseOption } =
+const { separateOptVal, separateArgs, parseOption, isOption } =
   require('../../src/head/fetch.js');
 
 describe( 'separateOptVal', () => {
@@ -10,9 +10,15 @@ describe( 'separateOptVal', () => {
   it( 'should separate \'-8\' to -, 8', () => {
     assert.strict.deepEqual(separateOptVal('-8'), ['-', '8']);
   });
+});
 
-  it( 'should separate \'+8\' to +, 8', () => {
-    assert.strict.deepEqual(separateOptVal('+8'), ['+', '8']);
+describe( 'isOption', () => {
+  it( 'should return true for -c as arg', () => {
+    assert.equal(isOption('-c2'), true);
+  });
+
+  it( 'should return false for +c as arg', () => {
+    assert.equal(isOption('+c9'), false);
   });
 });
 
@@ -37,6 +43,14 @@ describe( 'separateArgs', () => {
       {
         options: [{ option: '-n', limit: '13' }],
         files: ['apple', 'banana']
+      });
+  });
+
+  it( 'should separate invalid option and no files', () => {
+    assert.strict.deepEqual(separateArgs(['-n+13']),
+      {
+        options: [{ option: '-n', limit: '+13' }],
+        files: []
       });
   });
 });

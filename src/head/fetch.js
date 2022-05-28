@@ -1,8 +1,9 @@
 const separateOptVal = (arg) => {
-  const [, option, value] = arg.match(/([-+][A-z]?)(.*)?$/);
+  const optionValuePattern = /(-[A-z]?)(.*)?$/;
+  const [, option, value] = arg.match(optionValuePattern);
   return [option, value];
 };
-const isOption = (arg) => /^-[A-z-0-9]*$/.test(arg);
+const isOption = (arg) => arg.startsWith('-');
 
 const separateArgs = (allArgs) => {
   const args = [...allArgs];
@@ -30,3 +31,4 @@ const parseOption = (arg) => {
 exports.separateOptVal = separateOptVal;
 exports.separateArgs = separateArgs;
 exports.parseOption = parseOption;
+exports.isOption = isOption;
