@@ -73,8 +73,9 @@
       4
     ],
     "no-extra-parens": "error",
+    "quote-props": ["error", "as-needed"],
     "no-template-curly-in-string": "error",
-    "array-callback-return": "error",
+    "array-callback-return": "warn",
     "default-param-last": "error",
     "no-constructor-return": "error",
     "no-invalid-this": "error",
@@ -120,7 +121,6 @@
         "tailMain.js"
       ],
       "rules": {
-        "max-statements": "off"
       }
     }
   ]

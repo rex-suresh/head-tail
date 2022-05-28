@@ -45,8 +45,9 @@
   - [ ] take items and iterate over fileContents
 
 - [ ] write a print outputs function
-  - [ ] should inject dependencies
-  - [ ] should print outputs according to files provided
+  - [x] should inject dependencies
+  - [x] should print outputs according to files provided
+
 - [ ] re look over old testCases
   - [ ] remove duplicate or useless tests
 
@@ -61,6 +62,9 @@
 - [ ] make validation generic / extensible
 
 ### DONE :
+- [x] change the process flow of printing
+ - [x] separate file read concern
+ - [x] separate head concern
 - [x] refactor fetch to be readable
   - [x] test isOption
 - [x] organize readme
