@@ -11,24 +11,36 @@ const mockReadFile = (content, expFileName, expEncoding) => {
   };
 };
 
-const mockConsole = (expText) => {
+const mockConsole = (expArgs) => {
   let index = 0;
-  return (...text) => {
-    assert.deepStrictEqual(text, expText[index]);
+  return (...args) => {
+    assert.deepStrictEqual(args, expArgs[index]);
     index++;
   };
 };
 
+// const mockConsole = (expArgs) => {
+//   let index = 0;
+//   const mockFn = function (...args) {
+//     assert.deepStrictEqual(args, expArgs[index]);
+//     index++;
+//     mockFn.callCount = index;
+//   };
+//   return mockFn;
+// };
+
 describe( 'main', () => {
-  it('should return 1 line when called with args', () => {
-    const log = mockConsole([['hello']]); 
+  it('should print 1 line when called with args', () => {
+    const log = mockConsole([['hello']]);
     const showError = mockConsole([]);
     const readFile = mockReadFile(['hello'], ['a.txt'], 'utf8');
+    
     assert.doesNotThrow(() =>
       main(log, showError, readFile, ['-n', '1', 'a.txt']));
+    // assert.equal(log.callCount, 1);
   });
 
-  it( 'should return 2 lines when called with args', () => {
+  it( 'should print 2 lines when called with args', () => {
     const log = mockConsole(
       [['==> a.txt <==\nhello'], ['\n==> b.txt <==\nhey']]); 
     const showError = mockConsole([]);
@@ -37,6 +49,8 @@ describe( 'main', () => {
     
     assert.doesNotThrow(() =>
       main(log, showError, readFile, ['-n', '1', 'a.txt', 'b.txt']));
+      
+    // assert.equal(log.callCount, 2);
   });
 
   it( 'should show error when called with no file exist', () => {

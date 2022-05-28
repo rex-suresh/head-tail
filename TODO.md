@@ -39,7 +39,11 @@
 ---------------------
 # HEAD
 ### TODO :
-
+- [ ] REFACTOR CODE
+- [ ] fix validations contract and throws
+  - [ ] create a fn to throw error messages
+- [ ] Maintain a fixed contract of outer head and head core
+- [ ] 
 - [ ] change contract of head file to take content
   - [ ] separate concern of file error catch from headFile
   - [ ] take items and iterate over fileContents

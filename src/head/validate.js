@@ -1,14 +1,14 @@
+const usage = () => 'usage: head [-n lines | -c bytes] [file ...]';
+
 const illegalOptionThrow = (option) => {
   throw {
-    message: `illegal option -- ${option[1]
-    }\nusage: head [-n lines | -c bytes] [file ...]`
+    message: `illegal option -- ${option[1]}\n${usage()}`
   };
 };
 
 const optionReqArgThrow = (key) => {
   throw {
-    message: `option requires an argument -- ${key[1]
-    }\nusage: head [-n lines | -c bytes] [file ...]`
+    message: `option requires an argument -- ${key[1]}\n${usage()}`
   };
 };
 
@@ -17,7 +17,7 @@ const illegalValueThrow = (optionName, value) => {
 };
 
 const usageThrow = () => {
-  throw {message: 'usage: head [-n lines | -c bytes] [file ...]'};
+  throw { message: usage()};
 };
 
 const combinedOptionThrow = () => {
@@ -59,16 +59,32 @@ const validateOptions = (options) => {
   });
 };
 
-const validate = (args, validateOpts, usage) => {
+const validate = (args, validateOpts, usageThrow) => {
   validateOpts(args.options);
   if (args.files.length < 1) {
-    usage();
+    usageThrow();
   }
 };
 
-const validateHeadArgs = (args) => {
+const validateArgs = (args) => {
   validate(args, validateOptions, usageThrow);  
 };
 
+const changeExitCode = () => {
+  process.exitCode = 1;
+};
+
+const validateSeparatedArgs = (args, showError) => {
+  try {
+    validateArgs(args);
+  } catch (error) {
+    showError('head:', error.message);
+    changeExitCode();
+  }
+};
+
+exports.usage = usage;
 exports.validate = validate;
-exports.checkArgs = validateHeadArgs;
+exports.validateArgs = validateArgs;
+exports.changeExitCode = changeExitCode;
+exports.validateSeparatedArgs = validateSeparatedArgs;

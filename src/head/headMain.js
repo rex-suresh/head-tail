@@ -1,43 +1,26 @@
-const { head } = require('./headLib.js');
-const { checkArgs } = require('./validate.js');
+const { headFile } = require('./headLib.js');
 const { separateArgs, parseOption } = require('./fetch.js');
-const { formatOutput, formatErrorMessage } = require('../formatOutput.js');
+const { usage, changeExitCode, validateSeparatedArgs } =
+  require('./validate.js');
 
-const headFile = ({finalOption, fileCount}, { readFile, log, showError }) => {
-  let logStatus = false;
+const main = (log, showError, readFile, rawArgs) => {
+  if (rawArgs[0] === '--help') {
+    log(usage());
+    changeExitCode();
+    return;
+  }
   
-  return (fileName) => {
-    try {
-      const headOutput = head(readFile(fileName, 'utf8'), finalOption);
-      log(formatOutput(headOutput, { fileName, fileCount, logStatus }));
-      logStatus = true;
-    } catch (error) {
-      const message = formatErrorMessage(error.message, fileName, 'head');
-      showError(message);
-      process.exitCode = 1;
-    }
-  };
-};
-
-const main = (log, showError, readFile, args) => {
-  if (args[0] === '--help') {
-    log('usage: head [-n lines | -c bytes] [file ...]');
-    process.exitCode = 1;
-    return;
+  const args = separateArgs(rawArgs);
+  validateSeparatedArgs(args, showError);
+  
+  if (process.exitCode !== 1) {
+    const { options, files } = args;
+    const option = parseOption(options[options.length - 1]);
+    
+    files.map(fileName => headFile(
+      fileName, option, files.length, { readFile, log, showError })
+    );
   }
-
-  const parsedArgs = separateArgs(args);
-  try {
-    checkArgs(parsedArgs);
-  } catch (error) {
-    showError('head:', error.message);
-    process.exitCode = 1;
-    return;
-  }
-  const { options, files } = parsedArgs;
-  const finalOption = parseOption(options[options.length - 1]);
-  files.forEach(headFile(
-    { finalOption, fileCount: files.length }, { readFile, log, showError }));
 };
 
 exports.main = main;
